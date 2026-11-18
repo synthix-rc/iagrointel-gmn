@@ -1158,22 +1158,23 @@ body:not(:has([data-hero])) main {
   color: var(--light);
 }
 
-/* iAgroIntel (E4): submenu de Crédito rural no painel (Cooperativas · produtos · Exemplos). Links menores, em linha. */
+/* Submenu de Crédito rural no painel mobile: links empilhados um embaixo do outro com fio guia à esquerda */
 .hdr-panel-subnav {
   list-style: none;
-  margin: calc(1 * var(--u)) 0 calc(1.4 * var(--u));
-  padding: 0;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px calc(2.6 * var(--u));
+  margin: 12px 0 20px;
+  padding: 2px 0 2px 16px;
+  border-left: 1px solid rgba(var(--light-rgb), .28);
+  display: grid;
+  gap: 10px;
 }
 
 .hdr-panel-list .hdr-panel-subnav a {
   font-size: max(15px, calc(1.8 * var(--u)));
   font-weight: 500;
   letter-spacing: 0;
-  line-height: 1.4;
-  color: rgba(var(--paper-rgb), .72);
+  line-height: 1.35;
+  color: rgba(var(--paper-rgb), .78);
+  display: block;
 }
 
 .hdr-panel-list .hdr-panel-subnav a:hover {
@@ -1190,9 +1191,8 @@ body:not(:has([data-hero])) main {
   list-style: none;
   margin: 0;
   padding: calc(3 * var(--u)) 0 0;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px 32px;
+  display: grid;
+  gap: 12px;
   border-top: 1px solid rgba(var(--paper-rgb), .16);
 }
 
