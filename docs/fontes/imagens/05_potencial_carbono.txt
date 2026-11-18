@@ -1,0 +1,14 @@
+produto: Potencial de Carbono
+local: Marliéria (MG), 80,6 %; Bom Jesus do Galho (MG), 12,5 %; Pingo-d'Água (MG), 5,1 %; Dionísio (MG), 1,0 %; Córrego Novo (MG), 0,8 %
+bounding box WGS84 (oeste, sul, leste, norte): -42.6454, -19.7788, -42.4546, -19.6612
+largura x altura aproximada: 20.2 km x 13.3 km
+data da cena: 04/09/2024
+sensor: Sentinel-2B (MSI, nível L2A)
+composição: cor verdadeira, B4 (vermelho) / B3 (verde) / B2 (azul), 10 m, contraste natural (gama 0.62, saturação 1.2); ampliada para 2400 px (Lanczos)
+offset de reflectância: decidido por cena pelo valor bruto de B02 e B11; subtraído = [0]
+fração de nuvem e sombra no quadro (SCL 3, 8, 9, 10): 0,01 %
+id da cena: S2B_23KQU_20240904_0_L2A
+o que se vê: Grande maciço de Mata Atlântica com lagoas, limitado à direita pelo rio Doce e por pastagens e plantios vizinhos.
+arquivos: 05_potencial_carbono.jpg (2400 px), 05_potencial_carbono_web.jpg (1600 px)
+atribuição (linha exata):
+Contém dados Copernicus Sentinel modificados 2024, processados pela iAgroSat

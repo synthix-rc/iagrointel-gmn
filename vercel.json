@@ -1,0 +1,31 @@
+{
+  "redirects": [
+    {
+      "source": "/iagrointel-cooperativas-43d07d5fa0bd727b",
+      "destination": "/credito-rural/cooperativas/",
+      "statusCode": 301
+    },
+    {
+      "source": "/iagrointel-cooperativas-43d07d5fa0bd727b/",
+      "destination": "/credito-rural/cooperativas/",
+      "statusCode": 301
+    }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "has": [
+        {
+          "type": "host",
+          "value": "(?<projeto>.+)\\.vercel\\.app"
+        }
+      ],
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex"
+        }
+      ]
+    }
+  ]
+}

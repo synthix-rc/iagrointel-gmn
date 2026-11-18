@@ -1,0 +1,35 @@
+{
+  "name": "iagrointel-site",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "prebuild": "node scripts/verifica-lancamento.mjs && node scripts/pendencias.mjs --check",
+    "build": "next build",
+    "postbuild": "node scripts/verifica-sitemap.mjs",
+    "start": "npx serve out",
+    "typecheck": "tsc --noEmit",
+    "pendencias": "node scripts/pendencias.mjs --md"
+  },
+  "browserslist": [
+    "chrome >= 93",
+    "edge >= 93",
+    "firefox >= 92",
+    "safari >= 15.4",
+    "ios_saf >= 15.4"
+  ],
+  "dependencies": {
+    "@gsap/react": "2.1.2",
+    "gsap": "3.15.1",
+    "lenis": "1.3.27",
+    "next": "15.5.28",
+    "react": "19.1.1",
+    "react-dom": "19.1.1"
+  },
+  "devDependencies": {
+    "@types/node": "22.15.3",
+    "@types/react": "19.1.8",
+    "@types/react-dom": "19.1.6",
+    "typescript": "5.8.3"
+  }
+}

@@ -1,0 +1,14 @@
+produto: Laudo de Acompanhamento
+local: Montividiu (GO), 100 % do quadro
+bounding box WGS84 (oeste, sul, leste, norte): -51.2441, -17.4588, -51.0559, -17.3412
+largura x altura aproximada: 20.0 km x 13.0 km
+data da cena: 24/05/2025
+sensor: Sentinel-2B (MSI, nível L2A)
+composição: cor verdadeira, B4 (vermelho) / B3 (verde) / B2 (azul), 10 m, contraste natural (gama 0.7, saturação 1.1); ampliada para 2400 px (Lanczos)
+offset de reflectância: decidido por cena pelo valor bruto de B02 e B11; subtraído = [0]
+fração de nuvem e sombra no quadro (SCL 3, 8, 9, 10): 0,00 %
+id da cena: S2B_22KDF_20250524_0_L2A
+o que se vê: Lavouras de segunda safra com dossel verde em maio, separadas por matas ao longo dos córregos, com pivôs e parte de uma área urbana no canto inferior.
+arquivos: 04_laudo_acompanhamento.jpg (2400 px), 04_laudo_acompanhamento_web.jpg (1600 px)
+atribuição (linha exata):
+Contém dados Copernicus Sentinel modificados 2025, processados pela iAgroSat

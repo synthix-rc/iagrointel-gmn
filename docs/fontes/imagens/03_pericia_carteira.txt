@@ -1,0 +1,14 @@
+produto: Perícia de Carteira
+local: São Desidério (BA), 100 % do quadro
+bounding box WGS84 (oeste, sul, leste, norte): -46.0698, -12.8769, -45.8302, -12.7231
+largura x altura aproximada: 26.1 km x 17.1 km
+data da cena: 21/08/2024
+sensor: Sentinel-2B (MSI, nível L2A)
+composição: cor verdadeira, B4 (vermelho) / B3 (verde) / B2 (azul), 10 m, contraste natural (gama 0.8, saturação 1.15); ampliada para 2400 px (Lanczos)
+offset de reflectância: decidido por cena pelo valor bruto de B02 e B11; subtraído = [0, 0, 0, 0]
+fração de nuvem e sombra no quadro (SCL 3, 8, 9, 10): 0,00 %
+id da cena: S2B_23LLF_20240821_0_L2A, S2B_23LMF_20240821_0_L2A, S2B_23LLG_20240821_0_L2A, S2B_23LMG_20240821_0_L2A
+o que se vê: Vista regional do chapadão com muitas propriedades lado a lado, talhões de grãos, pivôs centrais, uma pequena área urbana e o vale de um rio com vegetação nativa.
+arquivos: 03_pericia_carteira.jpg (2400 px), 03_pericia_carteira_web.jpg (1600 px)
+atribuição (linha exata):
+Contém dados Copernicus Sentinel modificados 2024, processados pela iAgroSat

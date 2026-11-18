@@ -1,0 +1,108 @@
+/* ==========================================================================
+   tokens.css · iAgroIntel
+   Mesmos nomes de variável do site da iAgroSat: base.css e padroes.css funcionam sem mudança.
+   Trocar a paleta = mexer só aqui.
+
+   FATO   = cor do logo, conferida nos SVGs (SISTEMA-visual.md, 13/11/2026).
+   PROPOSTA = tom derivado para o site, com contraste calculado (WCAG 2.x). Validar na Fase 1.
+   A DEFINIR = ainda sem decisão (Fase 1 do design system da iAgroIntel).
+
+   Regra de contraste (SISTEMA-visual.md):
+   - Sinal (#4FA3C7) e Céu (#8DB8D8) sobre fundo claro: SÓ grafismo decorativo (2,62 e 1,94).
+   - Sobre Tinta (#101B2D): Sinal 6,08 (AA) e Céu 8,20 (AAA) servem como texto e destaque.
+   - Em fundo claro, destaque de evidência usa --sinal-escuro (PROPOSTA #25728F: 4,99 sobre Papel frio).
+   ========================================================================== */
+:root {
+  /* Paleta da marca */
+  --ink: #101B2D;          /* FATO · Tinta: texto, fundos escuros (15,93 sobre Papel frio) */
+  --main: #1F4E79;         /* FATO · Documento: "Intel", títulos grandes, botão principal */
+  --main-text: #1F4E79;    /* FATO · Documento como texto e botão em fundo claro (8,00 · AAA) */
+  --light: #4FA3C7;        /* FATO · Sinal ("parcela acesa"): destaque SOBRE FUNDO ESCURO (6,08 sobre Tinta) */
+  --sky: #8DB8D8;          /* FATO · Céu: texto secundário e grafismo sobre fundo escuro (8,20 sobre Tinta) */
+  --sinal-escuro: #25728F; /* APROVADO 13/11/2026 · Sinal para fundo claro (4,99 sobre Papel frio · 5,41 sobre branco) */
+  --paper: #F4F6F8;        /* FATO · Papel frio */
+  --white: #FFFFFF;
+
+  /* Status do veredito (DECIDIDO 13/11/2026). A cor nunca vai sozinha: sempre com rótulo escrito
+     ("Conforme", "Com aviso"...) ou forma. Contraste calculado pela fórmula WCAG 2.x.
+     --st-*         = em fundo claro (texto, marcador, barra)
+     --st-*-escuro  = sobre Tinta e fundos escuros */
+  --st-ok: #2B7A4B;              /* Conforme: 4,86 sobre Papel frio · 5,27 sobre branco */
+  --st-aviso: #8A5A00;           /* Com aviso: 5,47 sobre Papel frio · 5,93 sobre branco */
+  --st-nao: #B23A22;             /* Não conforme: 5,50 sobre Papel frio · 5,96 sobre branco */
+  --st-insuf: #56636F;           /* Dado insuficiente (= --muted): 5,68 sobre Papel frio */
+  --st-ok-escuro: #6CC18E;       /* 7,94 sobre Tinta */
+  --st-aviso-escuro: #F2B233;    /* 9,20 sobre Tinta (= --sun) */
+  --st-nao-escuro: #F29A84;      /* 8,00 sobre Tinta (= --clay-light) */
+  --st-insuf-escuro: #C3CDD8;    /* 10,72 sobre Tinta (= --on-dark-2) */
+
+  /* Tons de alerta herdados da iAgroSat, usados como preenchimento e no anel de foco. */
+  --sun: #F2B233;          /* aviso (preenchimento) e anel de foco em fundo escuro (--focus-dark) */
+  --clay: #C4452B;         /* nível alto (preenchimento, risco) */
+
+  /* Anel de foco (D2, 15/11/2026). Mínimo de 3:1 contra o fundo em volta do elemento (WCAG 2.4.13 / 1.4.11).
+     --focus      = fundo claro: Documento, 8,00 sobre Papel frio · 8,61 sobre branco
+     --focus-dark = seções [data-header="dark"], cabeçalho escuro, painel do menu e rodapé escuro: Sol, 9,20 sobre Tinta
+     (sobre Papel o Sol dava 1,73: por isso não vale mais em fundo claro). Regra em base.css. */
+  --focus: var(--main-text);
+  --focus-dark: var(--sun);
+
+  /* Neutros frios (PROPOSTA) */
+  --muted: #56636F;        /* texto de apoio: 5,68 sobre Papel frio · 6,16 sobre branco */
+  --line: #D3DAE2;         /* fios e bordas em fundo claro (decorativo) */
+  --night-2: #1A2A42;      /* um tom acima da Tinta (cartões em fundo escuro) */
+
+  /* Marca irmã. No site da iAgroSat, --i-* era a iAgroIntel; aqui, --i-* é a iAgroSat (endosso, "uma plataforma iAgroSat"). */
+  --i-ink: #17261C;        /* iAgroSat Noite */
+  --i-main: #2F8F46;       /* iAgroSat Campo */
+  --i-sky: #9BD18B;        /* iAgroSat Broto */
+
+  --f-body: var(--font-manrope), "Helvetica Neue", Arial, sans-serif;
+  --f-mono: var(--font-mono), ui-monospace, Menlo, monospace;
+  --radius: 14px;
+  --max: 1160px;
+
+  /* Canais RGB para transparências: rgba(var(--light-rgb), .3). Mudar junto com a cor correspondente. */
+  --ink-rgb: 16, 27, 45;
+  --main-rgb: 31, 78, 121;
+  --light-rgb: 79, 163, 199;
+  --light-2-rgb: 214, 232, 242;   /* estrelas com tom da marca */
+  --paper-rgb: 244, 246, 248;
+  --sun-rgb: 242, 178, 51;
+  --clay-rgb: 196, 69, 43;
+  --st-ok-rgb: 43, 122, 75;
+  --st-nao-rgb: 178, 58, 34;
+  --night-2-rgb: 26, 42, 66;
+  --deep-rgb: 9, 15, 26;
+  --deep-2-rgb: 12, 20, 34;
+  --i-main-rgb: 47, 143, 70;
+  --i-sky-rgb: 155, 209, 139;
+
+  /* Tons derivados (PROPOSTA, frios, a partir da Tinta e do Documento) */
+  --text-2: #33404D;       /* texto secundário em fundo claro: 9,78 sobre Papel frio */
+  --text-lead: #2A3646;
+  --on-dark-2: #C3CDD8;    /* texto secundário em fundo escuro: 10,72 sobre Tinta */
+  --on-dark-tint: #E3EBF3;
+  --night-line: #2C3E5A;   /* bordas em fundo escuro */
+  --night-line-2: #283851;
+  --night-hover: #1D2D47;
+  --space: #05080F;        /* fundo "espaço" */
+  --space-glow: #111D33;
+  --deep: #090F1A;         /* painéis profundos (terminal, lista de escolha) */
+  --line-2: #A7B1BC;
+  --tint-1: #E2E8EF;
+  --sun-tint: #F7E4B8;
+  --clay-light: #F29A84;
+  --clay-2: #E06B4F;
+  --sat-gray: #C6CCD3;
+  --sat-body: #56606B;
+  --i-on-dark: #E8F2E4;
+  --i-on-dark-2: #CFD8CC;
+  --i-tint: #E3E8DD;
+  /* Celular de exemplo (interface de mensagens, neutra) */
+  --wa-bg: #0B141A;
+  --wa-bubble: #1F2C34;
+  --wa-text: #E9EDEF;
+  --wa-muted: #8696A0;
+  color-scheme: light;
+}

@@ -1,0 +1,448 @@
+/* ==========================================================================
+   tecnologia.css · iAgroIntel
+   Padrões da iAgroSat (referencia/css/padroes.css: monitoramento__uso-do-solo,
+   monitoramento__clima e geo-e-api__mcp) aplicados à página /tecnologia/.
+   Regras: cores exclusivamente de tokens.css; movimento dentro de prefers-reduced-motion.
+   ========================================================================== */
+
+/* Selos com marcador quadrado de 6 px (do kit: .pl-selos e .cl-selos) */
+.pl-selos {
+  list-style: none; margin: 0; padding: 0;
+  display: flex; flex-wrap: wrap; gap: calc(1 * var(--u)) calc(2.4 * var(--u));
+  font-size: max(13px, calc(1.55 * var(--u))); font-weight: 600; color: var(--ink);
+}
+.pl-selos li { display: inline-flex; align-items: center; gap: 10px; }
+.pl-selos li::before { content: ""; width: 6px; height: 6px; flex: none; background: var(--main); }
+.cl-selos { color: var(--paper); }
+.cl-selos li::before { background: var(--light); }
+
+/* 1 · Abertura escura com grade, imagem Sentinel-2 à direita e índice de âncoras na base (do kit: .cl-hero + .us-hero) */
+.tc-hero {
+  flex-direction: column;
+  justify-content: space-between;
+  gap: calc(4 * var(--u));
+  box-sizing: border-box;
+}
+.pd-hero-h1 {
+  font-size: max(36px, calc(5.8 * var(--u)));
+  line-height: 1.04;
+  letter-spacing: -.04em;
+  max-width: 100%;
+  overflow-wrap: break-word;
+}
+@media (min-width: 1024px) {
+  .tc-hero {
+    height: 100svh;
+    max-height: 100svh;
+    min-height: 0;
+    padding: calc(var(--hdr-h) + 2.4 * var(--u)) 0 calc(2.8 * var(--u));
+    gap: calc(2.4 * var(--u));
+  }
+  .tc-hero .cl-hero-in {
+    flex: 1;
+    min-height: 0;
+    align-items: center;
+  }
+  .tc-hero .cl-hero-text {
+    grid-column: 2 / 8;
+    min-width: 0;
+    gap: calc(2 * var(--u));
+  }
+  .tc-hero-img {
+    max-height: min(48svh, 420px);
+  }
+  .tc-hero-img img {
+    max-height: min(48svh, 420px);
+    object-fit: cover;
+  }
+}
+.tc-hero-map { grid-column: 9 / 16; position: relative; margin: 0; min-width: 0; }
+.tc-hero-img {
+  position: relative; overflow: hidden;
+  border: 1px solid rgba(var(--light-rgb), .24);
+  box-shadow: 0 60px 120px -50px rgba(0, 0, 0, .8);
+}
+.tc-hero-img img { display: block; width: 100%; height: auto; }
+/* Linha de varredura que desce sobre a cena uma vez (4,6 s < 5 s, WCAG 2.2.2) */
+.tc-hero-scan {
+  position: absolute; left: 0; right: 0; top: 0; height: 2px;
+  background: var(--light);
+  box-shadow: 0 0 18px 3px rgba(var(--light-rgb), .6);
+  opacity: 0; pointer-events: none;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .tc-hero-scan { animation: tcScan 4.6s cubic-bezier(.45, 0, .55, 1) .6s 1; }
+}
+@keyframes tcScan {
+  0% { top: 0; opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { top: 100%; opacity: 0; }
+}
+.tc-hero-leg {
+  margin-top: 12px;
+  font-family: var(--f-mono);
+  font-size: max(11px, calc(1.2 * var(--u)));
+  line-height: 1.5;
+  color: var(--on-dark-2);
+}
+
+/* Índice de âncoras sobre fundo escuro na base do hero */
+.tc-hero .cr-indice-wrap { position: relative; z-index: 1; width: 100%; margin-top: 0; }
+.tc-hero .cr-indice { border-top-color: rgba(var(--paper-rgb), .2); }
+.tc-hero .cr-indice-t { color: rgba(var(--paper-rgb), .62); }
+.tc-hero .cr-indice a { color: var(--paper); }
+.tc-hero .cr-indice a:hover,
+.tc-hero .cr-indice a:focus-visible { color: var(--light); }
+
+/* Cartões numerados (.pd-steps-list): em seção Papel, cartão branco; em seção branca, cartão Papel (já em padroes.css) */
+.tc-steps li p {
+  font-size: max(15px, calc(1.75 * var(--u)));
+  line-height: 1.55;
+  font-weight: 500;
+  color: var(--ink);
+}
+.pd-rec-n + .pd-rec-x {
+  margin-top: 0;
+  font-size: max(15px, calc(1.75 * var(--u)));
+  color: var(--ink);
+}
+
+/* 5 · Teste de consistência sobre seção escura (do kit: .cl-nums + .sb-tec) */
+.sb-tec .lbl { color: rgba(var(--paper-rgb), .62); }
+.tc-nums {
+  grid-column: 2 / 16;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  border-top: 1px solid rgba(var(--paper-rgb), .32);
+  border-bottom: 1px solid rgba(var(--light-rgb), .18);
+  padding-block: calc(4 * var(--u));
+}
+.tc-nums > div {
+  padding-right: calc(2.4 * var(--u));
+  display: grid;
+  gap: calc(1 * var(--u));
+  align-content: start;
+}
+.tc-nums > div + div {
+  padding-left: calc(2.8 * var(--u));
+  border-left: 1px solid rgba(var(--light-rgb), .18);
+}
+.tc-nums dd {
+  margin: 0;
+  font-size: max(44px, calc(8 * var(--u)));
+  line-height: 1;
+  font-weight: 400;
+  letter-spacing: -.045em;
+  color: var(--light);
+  font-variant-numeric: tabular-nums;
+}
+.tc-nums > div:last-child dd {
+  color: var(--st-ok-escuro);
+}
+.tc-nums dt {
+  font-size: max(13px, calc(1.5 * var(--u)));
+  color: rgba(var(--paper-rgb), .78);
+  font-weight: 500;
+  line-height: 1.4;
+}
+.tc-nums-texto {
+  grid-column: 2 / 12;
+  margin: 0;
+  color: rgba(var(--paper-rgb), .84);
+  max-width: 62ch;
+}
+
+/* 7 · Lista numerada sobre fundo escuro (do kit: .mc-lim-list em geo-e-api__mcp.tsx) */
+.mc-lim-list {
+  grid-column: 8 / 16;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid rgba(var(--paper-rgb), .5);
+}
+.mc-lim-list li {
+  display: grid;
+  grid-template-columns: calc(6 * var(--u)) minmax(0, 1fr);
+  column-gap: calc(2 * var(--u));
+  align-items: baseline;
+  padding: calc(2.8 * var(--u)) 0;
+  border-bottom: 1px solid rgba(var(--light-rgb), .16);
+}
+.mc-lim-list p {
+  margin: 0;
+  font-size: max(16px, calc(2 * var(--u)));
+  line-height: 1.5;
+  letter-spacing: -.01em;
+  color: rgba(var(--paper-rgb), .86);
+}
+
+/* Página /normas/ (prefixo nm-): marcos retroativos em 2 colunas + etiqueta mono nos cartões de cronograma */
+.nm-cortes {
+  grid-column: 2 / 16;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  border-top: 1px solid var(--ink);
+  border-bottom: 1px solid var(--line);
+  padding-block: calc(3.6 * var(--u));
+}
+.nm-corte {
+  padding-right: calc(3 * var(--u));
+  display: grid;
+  gap: calc(1 * var(--u));
+  align-content: start;
+}
+.nm-corte + .nm-corte {
+  padding-left: calc(3 * var(--u));
+  padding-right: 0;
+  border-left: 1px solid var(--line);
+}
+.nm-corte-data {
+  margin: 0;
+  font-size: max(36px, calc(6.2 * var(--u)));
+  line-height: 1;
+  font-weight: 400;
+  letter-spacing: -.04em;
+  color: var(--main);
+  font-variant-numeric: tabular-nums;
+}
+.nm-corte-norma {
+  font-family: var(--f-mono);
+  font-size: max(11.5px, calc(1.3 * var(--u)));
+  font-weight: 600;
+  color: var(--sinal-escuro);
+}
+.nm-corte-txt {
+  margin: 0;
+  font-size: max(14px, calc(1.6 * var(--u)));
+  line-height: 1.55;
+  color: var(--text-2);
+  font-weight: 500;
+}
+.nm-step-body {
+  display: grid;
+  gap: calc(1 * var(--u));
+}
+.nm-step-meta {
+  font-family: var(--f-mono);
+  font-size: max(11.5px, calc(1.25 * var(--u)));
+  font-weight: 600;
+  color: var(--sinal-escuro);
+}
+
+/* Página /ferramentas/ (prefixo fr-): 2 cartões grandes lado a lado com botão direto para a ferramenta externa */
+.fr-grid {
+  grid-column: 2 / 16;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: calc(2.4 * var(--u));
+}
+.fr-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: calc(3.2 * var(--u));
+  padding: calc(4 * var(--u));
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-top: 3px solid var(--main);
+}
+.fr-card-top {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+}
+.fr-escopo {
+  font-family: var(--f-mono);
+  font-size: max(11px, calc(1.2 * var(--u)));
+  font-weight: 600;
+  color: var(--sinal-escuro);
+}
+.fr-card-body {
+  display: grid;
+  gap: calc(1.6 * var(--u));
+}
+.fr-card-t {
+  margin: 0;
+  font-size: max(22px, calc(3.2 * var(--u)));
+  font-weight: 400;
+  letter-spacing: -.025em;
+  line-height: 1.16;
+  color: var(--ink);
+}
+.fr-card-t a {
+  color: inherit;
+  text-decoration: none;
+}
+.fr-card-t a:hover,
+.fr-card-t a:focus-visible {
+  color: var(--main-text);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: .15em;
+}
+.fr-card-x {
+  margin: 0;
+  font-size: max(14.5px, calc(1.65 * var(--u)));
+  line-height: 1.6;
+  color: var(--text-2);
+  font-weight: 500;
+}
+.fr-card-foot {
+  margin-top: auto;
+  padding-top: calc(2 * var(--u));
+  border-top: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+}
+.fr-eudr-actions {
+  grid-column: 8 / 16;
+  display: flex;
+  flex-wrap: wrap;
+  gap: calc(1.2 * var(--u));
+  margin-top: calc(2.4 * var(--u));
+}
+
+/* Páginas de produto em 1º nível (ProdutoPage.tsx: abertura escura .pd-hero-dark + CamadaPericial sobre a cena) */
+.pd-hero-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px calc(2.4 * var(--u));
+}
+.pd-hero-sub {
+  margin: 0;
+  font-family: var(--f-mono);
+  font-size: max(12px, calc(1.35 * var(--u)));
+  color: var(--sky);
+  font-weight: 500;
+}
+.pd-hero-ev {
+  margin: 0;
+  max-width: 44ch;
+  color: rgba(var(--paper-rgb), .9);
+  font-size: max(17px, calc(2.1 * var(--u)));
+  line-height: 1.45;
+  font-weight: 500;
+}
+.pd-hero-ressalva {
+  margin: calc(.6 * var(--u)) 0 0;
+  padding-top: calc(1.4 * var(--u));
+  border-top: 1px solid rgba(var(--paper-rgb), .18);
+  font-family: var(--f-mono);
+  font-size: max(11px, calc(1.2 * var(--u)));
+  line-height: 1.5;
+  color: var(--on-dark-2);
+  max-width: 52ch;
+}
+.pd-hero-palco {
+  background: var(--deep);
+}
+.pd-rec-col {
+  grid-column: 8 / 16;
+  grid-row: 1;
+  display: grid;
+  gap: calc(4.4 * var(--u));
+}
+.pd-rec-col > .pd-rec-list {
+  grid-column: auto;
+  grid-row: auto;
+}
+.pd-rec-prosa {
+  display: grid;
+  gap: calc(1.8 * var(--u));
+  max-width: 62ch;
+}
+.pd-rec-prosa p {
+  margin: 0;
+}
+.cr-indice a[aria-current="page"] {
+  color: var(--main-text);
+  text-decoration: underline;
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 4px;
+}
+
+/* Responsividade (tablet e celular) */
+@media (max-width: 1023.98px) {
+  .pd-rec-col {
+    grid-column: 2 / 16;
+    grid-row: 2;
+  }
+  .tc-hero-map {
+    grid-column: 2 / 16;
+    margin-top: calc(5 * var(--u));
+  }
+  .sb-tec-head {
+    grid-column: 2 / 16;
+    position: static;
+    margin-bottom: calc(5 * var(--u));
+  }
+  .mc-lim-list {
+    grid-column: 2 / 16;
+  }
+  .tc-nums-texto {
+    grid-column: 2 / 16;
+  }
+  .fr-grid {
+    grid-template-columns: 1fr;
+  }
+  .fr-eudr-actions {
+    grid-column: 2 / 16;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .fr-card {
+    padding: 24px 20px;
+    gap: 20px;
+  }
+  .tc-hero {
+    gap: 36px;
+  }
+  .tc-hero-map {
+    margin-top: 28px;
+  }
+  .tc-nums {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    padding-block: 24px;
+  }
+  .tc-nums > div {
+    padding-right: 0;
+  }
+  .tc-nums > div + div {
+    padding-left: 0;
+    padding-top: 24px;
+    border-left: 0;
+    border-top: 1px solid rgba(var(--light-rgb), .18);
+  }
+  .mc-lim-list li {
+    grid-template-columns: 36px minmax(0, 1fr);
+    padding: 18px 0;
+  }
+  .mc-lim-list p {
+    font-size: 16px;
+  }
+  .nm-cortes {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    padding-block: 24px;
+  }
+  .nm-corte {
+    padding-right: 0;
+  }
+  .nm-corte + .nm-corte {
+    padding-left: 0;
+    padding-top: 24px;
+    border-left: 0;
+    border-top: 1px solid var(--line);
+  }
+}

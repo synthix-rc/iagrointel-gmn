@@ -1,0 +1,14 @@
+produto: Perícia Pré-Crédito
+local: Chapadão do Sul (MS), 80,7 % do quadro; Cassilândia (MS), 19,3 %
+bounding box WGS84 (oeste, sul, leste, norte): -52.695, -18.9888, -52.505, -18.8712
+largura x altura aproximada: 20.1 km x 13.2 km
+data da cena: 28/07/2024
+sensor: Sentinel-2B (MSI, nível L2A)
+composição: cor verdadeira, B4 (vermelho) / B3 (verde) / B2 (azul), 10 m, contraste natural (gama 0.8, saturação 1.1); ampliada para 2400 px (Lanczos)
+offset de reflectância: decidido por cena pelo valor bruto de B02 e B11; subtraído = [0, 0]
+fração de nuvem e sombra no quadro (SCL 3, 8, 9, 10): 0,00 %
+id da cena: S2B_22KCD_20240728_0_L2A, S2B_22KCE_20240728_0_L2A
+o que se vê: Talhões de grãos na entressafra com limites nítidos, entremeados por blocos e faixas de vegetação nativa do Cerrado e matas ao longo dos córregos.
+arquivos: 01_pericia_pre_credito.jpg (2400 px), 01_pericia_pre_credito_web.jpg (1600 px)
+atribuição (linha exata):
+Contém dados Copernicus Sentinel modificados 2024, processados pela iAgroSat

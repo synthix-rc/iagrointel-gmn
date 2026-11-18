@@ -1,0 +1,14 @@
+produto: Crédito rural
+local: Não-Me-Toque (RS), 97,1 %; Santo Antônio do Planalto (RS), 2,6 %; Victor Graeff (RS), 0,3 %
+bounding box WGS84 (oeste, sul, leste, norte): -52.9222, -28.5188, -52.7178, -28.4012
+largura x altura aproximada: 20.2 km x 13.3 km
+data da cena: 28/09/2024
+sensor: Sentinel-2A (MSI, nível L2A)
+composição: cor verdadeira, B4 (vermelho) / B3 (verde) / B2 (azul), 10 m, contraste natural (gama 0.8, saturação 1.15); ampliada para 2400 px (Lanczos)
+offset de reflectância: decidido por cena pelo valor bruto de B02 e B11; subtraído = [0]
+fração de nuvem e sombra no quadro (SCL 3, 8, 9, 10): 0,00 %
+id da cena: S2A_22JCP_20240928_0_L2A
+o que se vê: Pequena cidade cercada por lavouras de inverno em diferentes estágios, solo preparado e capões de mata, num mosaico de propriedades.
+arquivos: 08_credito_rural.jpg (2400 px), 08_credito_rural_web.jpg (1600 px)
+atribuição (linha exata):
+Contém dados Copernicus Sentinel modificados 2024, processados pela iAgroSat

@@ -1,0 +1,674 @@
+/* ==========================================================================
+   camada-pericial.css · iAgroIntel
+   Camadas de inteligência pericial e animação sobre a imagem Sentinel-2 dos 7 produtos.
+   Regras: cores exclusivamente de tokens.css; acessibilidade WCAG 2.2.2 (respeita reduced-motion).
+   ========================================================================== */
+
+.cp-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: calc(1.8 * var(--u));
+  box-sizing: border-box;
+  background: radial-gradient(circle at 50% 50%, rgba(16, 27, 45, 0.12) 0%, rgba(16, 27, 45, 0.5) 100%);
+}
+
+/* Faixa superior pericial */
+.cp-topo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  z-index: 3;
+}
+
+.cp-topo-esq {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.cp-area {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--f-mono);
+  font-size: max(9.5px, calc(1.05 * var(--u)));
+  font-weight: 600;
+  color: var(--paper);
+  background: rgba(16, 27, 45, .88);
+  border: 1px solid rgba(var(--paper-rgb), .25);
+  padding: 3px 8px;
+  border-radius: 2px;
+}
+.cp-area::before {
+  content: "";
+  width: 5px;
+  height: 5px;
+  background: var(--light);
+}
+
+.cp-modo {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--f-mono);
+  font-size: max(10px, calc(1.1 * var(--u)));
+  font-weight: 500;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  color: var(--light);
+  background: rgba(16, 27, 45, .82);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(var(--light-rgb), .36);
+  padding: 3px 9px;
+  border-radius: 2px;
+}
+.cp-modo::before {
+  content: "";
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--light);
+  box-shadow: 0 0 6px var(--light);
+  animation: cpBlink 2.4s ease-in-out infinite;
+}
+
+.cp-selo {
+  font-family: var(--f-mono);
+  font-size: max(9.5px, calc(1.05 * var(--u)));
+  color: rgba(var(--paper-rgb), .82);
+  background: rgba(16, 27, 45, .72);
+  border: 1px solid rgba(var(--paper-rgb), .2);
+  padding: 3px 8px;
+  border-radius: 2px;
+}
+
+/* Palco gráfico central */
+.cp-stage {
+  position: relative;
+  flex: 1;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cp-graphic {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  max-height: 220px;
+}
+
+.cp-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+/* Faixa inferior */
+.cp-rodape {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  z-index: 3;
+}
+
+.cp-detalhe {
+  font-family: var(--f-mono);
+  font-size: max(9.5px, calc(1.05 * var(--u)));
+  color: rgba(var(--paper-rgb), .74);
+  background: rgba(16, 27, 45, .76);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  padding: 2px 7px;
+  border-radius: 2px;
+  border-left: 2px solid var(--light);
+}
+
+.cp-carimbo {
+  font-family: var(--f-mono);
+  font-size: max(9px, calc(1 * var(--u)));
+  color: rgba(var(--paper-rgb), .65);
+  background: rgba(16, 27, 45, .65);
+  padding: 2px 6px;
+  border-radius: 2px;
+}
+
+/* ==========================================================================
+   1. PERÍCIA PRÉ-CRÉDITO (Varredura CAR + 26 Bases)
+   ========================================================================== */
+.cp-car-poly {
+  stroke: var(--st-ok-escuro);
+  stroke-width: 2;
+  stroke-dasharray: 8 4;
+  fill: rgba(108, 193, 142, .14);
+  animation: cpDashMove 16s linear infinite;
+}
+
+.cp-mira {
+  stroke: rgba(var(--light-rgb), .6);
+  stroke-width: 1.5;
+  stroke-linecap: square;
+}
+
+.cp-vertice {
+  fill: var(--st-ok-escuro);
+  animation: cpPulseVert 2.5s ease-in-out infinite alternate;
+}
+
+.cp-laser-h {
+  stroke: var(--light);
+  stroke-width: 1.5;
+  filter: drop-shadow(0 0 6px var(--light));
+  animation: cpScanDown 4.8s cubic-bezier(.45, .05, .55, .95) infinite alternate;
+}
+
+.cp-chips-flutuantes {
+  position: absolute;
+  right: 12px;
+  bottom: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  align-items: flex-end;
+}
+
+.cp-chip {
+  font-family: var(--f-mono);
+  font-size: max(9px, calc(1 * var(--u)));
+  padding: 2px 7px;
+  border-radius: 2px;
+  letter-spacing: .02em;
+}
+
+.cp-chip-ok {
+  background: rgba(16, 27, 45, .88);
+  color: var(--st-ok-escuro);
+  border: 1px solid rgba(108, 193, 142, .45);
+}
+
+/* ==========================================================================
+   2. LAUDO PRODES (Temporal 2019 x Hoje)
+   ========================================================================== */
+.cp-split-linha {
+  stroke: var(--sun);
+  stroke-width: 1.8;
+  stroke-dasharray: 4 2;
+  filter: drop-shadow(0 0 5px var(--sun));
+  animation: cpSweepX 6s ease-in-out infinite alternate;
+}
+
+.cp-alerta-poly {
+  stroke: var(--sun);
+  stroke-width: 2;
+  fill: rgba(242, 178, 51, .16);
+  animation: cpPolyAlerta 6s ease-in-out infinite alternate;
+}
+
+.cp-hachura {
+  stroke: rgba(242, 178, 51, .35);
+  stroke-width: 1;
+}
+
+.cp-split-rotulos {
+  position: absolute;
+  top: 10px;
+  left: 12px;
+  right: 12px;
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--f-mono);
+  font-size: max(9px, calc(1 * var(--u)));
+}
+.cp-tempo-esq {
+  color: var(--sky);
+  background: rgba(16, 27, 45, .8);
+  padding: 2px 6px;
+  border: 1px solid rgba(141, 184, 216, .3);
+}
+.cp-tempo-dir {
+  color: var(--st-ok-escuro);
+  background: rgba(16, 27, 45, .8);
+  padding: 2px 6px;
+  border: 1px solid rgba(108, 193, 142, .4);
+}
+
+.cp-selo-laudo {
+  position: absolute;
+  bottom: 12px;
+  left: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(16, 27, 45, .92);
+  border: 1px solid var(--st-ok-escuro);
+  padding: 5px 10px;
+  border-radius: 2px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, .45);
+}
+.cp-selo-check {
+  font-size: 14px;
+  color: var(--st-ok-escuro);
+  font-weight: 700;
+}
+.cp-selo-laudo strong {
+  display: block;
+  font-size: max(10.5px, calc(1.15 * var(--u)));
+  color: var(--paper);
+  letter-spacing: -.01em;
+}
+.cp-selo-laudo small {
+  display: block;
+  font-family: var(--f-mono);
+  font-size: max(8.5px, calc(.95 * var(--u)));
+  color: var(--st-ok-escuro);
+}
+
+/* ==========================================================================
+   3. LAUDO DE ACOMPANHAMENTO (Pivô + NDVI fenológico)
+   ========================================================================== */
+.cp-pivo-base {
+  stroke: rgba(var(--light-rgb), .35);
+  stroke-width: 1.5;
+  stroke-dasharray: 4 3;
+}
+
+.cp-pivo-ndvi {
+  fill: rgba(108, 193, 142, .32);
+  stroke: var(--st-ok-escuro);
+  stroke-width: 2;
+  animation: cpNdviBreathe 5s ease-in-out infinite alternate;
+}
+
+.cp-pivo-braco {
+  stroke: var(--light);
+  stroke-width: 2;
+  transform-origin: 180px 95px;
+  animation: cpRotateArm 10s linear infinite;
+}
+
+.cp-curva-safra {
+  stroke: var(--light);
+  stroke-width: 2;
+  stroke-linecap: round;
+  filter: drop-shadow(0 0 4px rgba(var(--light-rgb), .5));
+}
+
+.cp-ponto-safra {
+  fill: var(--light);
+  animation: cpSafraPoint 5s ease-in-out infinite alternate;
+}
+
+.cp-ndvi-gauge {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  align-items: flex-end;
+}
+.cp-ndvi-tag {
+  font-family: var(--f-mono);
+  font-size: max(9.5px, calc(1.05 * var(--u)));
+  color: var(--st-ok-escuro);
+  background: rgba(16, 27, 45, .88);
+  border: 1px solid rgba(108, 193, 142, .45);
+  padding: 3px 8px;
+}
+.cp-ndvi-estagios {
+  display: flex;
+  gap: 4px;
+  font-family: var(--f-mono);
+  font-size: max(8.5px, calc(.9 * var(--u)));
+  color: rgba(var(--paper-rgb), .5);
+}
+.cp-ndvi-estagios .is-ativo {
+  color: var(--light);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* ==========================================================================
+   4. PERÍCIA DE CARTEIRA (Radar orbital multi-imóveis)
+   ========================================================================== */
+.cp-radar-wave {
+  stroke: var(--light);
+  stroke-width: 1.2;
+  opacity: .3;
+  transform-origin: 180px 110px;
+}
+.cp-rw-1 { animation: cpRadarZoom 4.5s cubic-bezier(.2, .8, .4, 1) infinite; }
+.cp-rw-2 { animation: cpRadarZoom 4.5s cubic-bezier(.2, .8, .4, 1) infinite 1.5s; }
+.cp-rw-3 { animation: cpRadarZoom 4.5s cubic-bezier(.2, .8, .4, 1) infinite 3s; }
+
+.cp-fazenda-item {
+  stroke: rgba(141, 184, 216, .45);
+  stroke-width: 1.2;
+  fill: rgba(31, 78, 121, .25);
+  transition: all .3s ease;
+}
+.fz-1 { animation: cpFarmLight 4.5s ease infinite 0.6s; }
+.fz-2 { animation: cpFarmLight 4.5s ease infinite 1.2s; }
+.fz-3 { animation: cpFarmLight 4.5s ease infinite 1.8s; }
+.fz-4 { animation: cpFarmLight 4.5s ease infinite 2.4s; }
+.fz-5 { animation: cpFarmLight 4.5s ease infinite 3.0s; }
+.fz-6 { animation: cpFarmLight 4.5s ease infinite 3.6s; }
+
+.cp-carteira-hud {
+  position: absolute;
+  bottom: 12px;
+  left: 12px;
+  background: rgba(16, 27, 45, .9);
+  border: 1px solid rgba(var(--light-rgb), .38);
+  padding: 6px 10px;
+  border-radius: 2px;
+}
+.cp-hud-linha {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: max(11px, calc(1.2 * var(--u)));
+  color: var(--paper);
+}
+.cp-hud-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--st-ok-escuro);
+  box-shadow: 0 0 6px var(--st-ok-escuro);
+}
+.cp-hud-sub {
+  display: block;
+  font-family: var(--f-mono);
+  font-size: max(8.5px, calc(.9 * var(--u)));
+  color: var(--sky);
+  margin-top: 2px;
+}
+
+/* ==========================================================================
+   5. BASE TERRITORIAL GRSAC (Buffers regulatórios RSA1)
+   ========================================================================== */
+.cp-gride-fio {
+  stroke: rgba(var(--paper-rgb), .08);
+  stroke-width: 1;
+}
+
+.cp-buffer-raio {
+  stroke-dasharray: 4 3;
+  transform-origin: 210px 115px;
+}
+.cp-buf-5k {
+  stroke: var(--sun);
+  stroke-width: 1.5;
+  fill: rgba(242, 178, 51, .06);
+  animation: cpPulseBuffer 3.8s ease-in-out infinite alternate;
+}
+.cp-buf-10k {
+  stroke: var(--light);
+  stroke-width: 1.2;
+  fill: rgba(79, 163, 199, .04);
+}
+
+.cp-prop-grsac {
+  stroke: var(--st-ok-escuro);
+  stroke-width: 2;
+  fill: rgba(108, 193, 142, .22);
+}
+
+.cp-grsac-card {
+  position: absolute;
+  top: 10px;
+  left: 12px;
+  background: rgba(16, 27, 45, .88);
+  border: 1px solid rgba(var(--light-rgb), .35);
+  padding: 6px 9px;
+}
+.cp-grsac-tit {
+  display: block;
+  font-family: var(--f-mono);
+  font-size: max(9.5px, calc(1.05 * var(--u)));
+  font-weight: 600;
+  color: var(--light);
+}
+.cp-grsac-stats {
+  display: flex;
+  gap: 8px;
+  font-family: var(--f-mono);
+  font-size: max(8.5px, calc(.92 * var(--u)));
+  color: rgba(var(--paper-rgb), .75);
+  margin-top: 3px;
+}
+.cp-grsac-stats b {
+  color: var(--st-ok-escuro);
+}
+
+/* ==========================================================================
+   6. POTENCIAL DE CARBONO (Isolinhas de biomassa + dossel)
+   ========================================================================== */
+.cp-iso {
+  stroke: var(--st-ok-escuro);
+  stroke-width: 1.5;
+  stroke-linecap: round;
+}
+.cp-iso-1 { opacity: .8; animation: cpIsoMove 7s ease-in-out infinite alternate; }
+.cp-iso-2 { opacity: .55; animation: cpIsoMove 7s ease-in-out infinite alternate 1.5s; }
+.cp-iso-3 { opacity: .35; animation: cpIsoMove 7s ease-in-out infinite alternate 3s; }
+
+.cp-c-pulse {
+  fill: var(--st-ok-escuro);
+  opacity: .5;
+}
+.cp-cp-1 { animation: cpCarbonRise 4s ease-out infinite; }
+.cp-cp-2 { animation: cpCarbonRise 4s ease-out infinite 1.4s; }
+.cp-cp-3 { animation: cpCarbonRise 4s ease-out infinite 2.8s; }
+
+.cp-carbono-badge {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  background: rgba(16, 27, 45, .9);
+  border: 1px solid rgba(108, 193, 142, .4);
+  padding: 6px 10px;
+  text-align: right;
+}
+.cp-carb-topo {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 6px;
+}
+.cp-carb-simb {
+  font-family: var(--f-mono);
+  font-size: 10px;
+  color: var(--st-ok-escuro);
+  background: rgba(108, 193, 142, .18);
+  padding: 1px 4px;
+  border-radius: 2px;
+}
+.cp-carb-topo strong {
+  font-size: max(12px, calc(1.3 * var(--u)));
+  color: var(--paper);
+  letter-spacing: -.02em;
+}
+.cp-carbono-badge small {
+  display: block;
+  font-family: var(--f-mono);
+  font-size: max(8.5px, calc(.9 * var(--u)));
+  color: rgba(var(--paper-rgb), .65);
+  margin-top: 2px;
+}
+
+/* ==========================================================================
+   7. TRIAGEM EUDR (Mira pericial + GeoJSON exportação)
+   ========================================================================== */
+.cp-mira-anel {
+  stroke: var(--light);
+  stroke-width: 1.2;
+  stroke-dasharray: 6 3;
+  animation: cpRotateArm 16s linear infinite;
+  transform-origin: 180px 105px;
+}
+.cp-mira-eixo {
+  stroke: rgba(var(--light-rgb), .4);
+  stroke-width: 1;
+}
+
+.cp-eudr-poly {
+  stroke: var(--st-ok-escuro);
+  stroke-width: 2;
+  fill: rgba(108, 193, 142, .24);
+  filter: drop-shadow(0 0 6px rgba(108, 193, 142, .3));
+}
+
+.cp-eudr-codigo {
+  position: absolute;
+  top: 10px;
+  left: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  background: rgba(16, 27, 45, .88);
+  border: 1px solid rgba(var(--paper-rgb), .18);
+  padding: 4px 7px;
+  font-family: var(--f-mono);
+  font-size: max(8.5px, calc(.9 * var(--u)));
+  color: var(--sky);
+}
+.cp-eudr-codigo code:last-child {
+  color: var(--st-ok-escuro);
+  font-weight: 600;
+}
+
+.cp-eudr-selo {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  background: rgba(16, 27, 45, .92);
+  border: 1px solid var(--st-ok-escuro);
+  padding: 5px 9px;
+  text-align: right;
+}
+.cp-eudr-selo span {
+  display: block;
+  font-family: var(--f-mono);
+  font-size: max(9.5px, calc(1.05 * var(--u)));
+  font-weight: 700;
+  color: var(--st-ok-escuro);
+  letter-spacing: .02em;
+}
+.cp-eudr-selo small {
+  display: block;
+  font-size: max(8.5px, calc(.9 * var(--u)));
+  color: rgba(var(--paper-rgb), .75);
+}
+
+/* ==========================================================================
+   ANIMAÇÕES KEYFRAMES (GPU / Smooth)
+   ========================================================================== */
+@keyframes cpBlink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: .4; }
+}
+
+@keyframes cpDashMove {
+  to { stroke-dashoffset: -120; }
+}
+
+@keyframes cpPulseVert {
+  from { r: 3px; fill-opacity: .7; }
+  to { r: 5px; fill-opacity: 1; }
+}
+
+@keyframes cpScanDown {
+  0% { transform: translateY(25px); opacity: .8; }
+  100% { transform: translateY(195px); opacity: .8; }
+}
+
+@keyframes cpSweepX {
+  0% { transform: translateX(-60px); }
+  100% { transform: translateX(60px); }
+}
+
+@keyframes cpPolyAlerta {
+  0% { stroke: var(--sun); fill: rgba(242, 178, 51, .2); }
+  60% { stroke: var(--sun); fill: rgba(242, 178, 51, .2); }
+  100% { stroke: var(--st-ok-escuro); fill: rgba(108, 193, 142, .24); }
+}
+
+@keyframes cpNdviBreathe {
+  0% { fill: rgba(242, 178, 51, .25); stroke: var(--sun); }
+  50% { fill: rgba(155, 209, 139, .35); stroke: var(--i-sky); }
+  100% { fill: rgba(108, 193, 142, .45); stroke: var(--st-ok-escuro); }
+}
+
+@keyframes cpRotateArm {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes cpSafraPoint {
+  0% { transform: translate(-80px, 20px); }
+  50% { transform: translate(0, 0); }
+  100% { transform: translate(70px, 35px); }
+}
+
+@keyframes cpRadarZoom {
+  0% { r: 15px; opacity: .8; }
+  100% { r: 140px; opacity: 0; }
+}
+
+@keyframes cpFarmLight {
+  0%, 100% { stroke: rgba(141, 184, 216, .35); fill: rgba(31, 78, 121, .2); }
+  40%, 60% { stroke: var(--st-ok-escuro); fill: rgba(108, 193, 142, .38); filter: drop-shadow(0 0 4px var(--st-ok-escuro)); }
+}
+
+@keyframes cpPulseBuffer {
+  from { transform: scale(0.96); opacity: .7; }
+  to { transform: scale(1.04); opacity: 1; }
+}
+
+@keyframes cpIsoMove {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-4px); }
+}
+
+@keyframes cpCarbonRise {
+  0% { transform: translateY(0) scale(0.8); opacity: .8; }
+  100% { transform: translateY(-24px) scale(1.4); opacity: 0; }
+}
+
+/* ==========================================================================
+   ACESSIBILIDADE · PREFERS-REDUCED-MOTION
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  .cp-layer *,
+  .cp-modo::before,
+  .cp-car-poly,
+  .cp-vertice,
+  .cp-laser-h,
+  .cp-split-linha,
+  .cp-alerta-poly,
+  .cp-pivo-ndvi,
+  .cp-pivo-braco,
+  .cp-ponto-safra,
+  .cp-radar-wave,
+  .cp-fazenda-item,
+  .cp-buf-5k,
+  .cp-iso,
+  .cp-c-pulse,
+  .cp-mira-anel {
+    animation: none !important;
+    transition: none !important;
+  }
+}

@@ -1,0 +1,14 @@
+produto: Base Territorial GRSAC
+local: Nova Xavantina (MT), 94,5 %; Nova Nazaré (MT), 5,5 %
+bounding box WGS84 (oeste, sul, leste, norte): -52.4228, -14.6788, -52.2372, -14.5612
+largura x altura aproximada: 20.1 km x 13.1 km
+data da cena: 19/05/2024
+sensor: Sentinel-2B (MSI, nível L2A)
+composição: cor verdadeira, B4 (vermelho) / B3 (verde) / B2 (azul), 10 m, contraste natural (gama 0.8, saturação 1.15); ampliada para 2400 px (Lanczos)
+offset de reflectância: decidido por cena pelo valor bruto de B02 e B11; subtraído = [0]
+fração de nuvem e sombra no quadro (SCL 3, 8, 9, 10): 0,00 %
+id da cena: S2B_22LCJ_20240519_0_L2A
+o que se vê: Rio das Mortes atravessando o quadro entre a cidade, lavouras em blocos e faixas de floresta e cerrado ao longo dos cursos d'água.
+arquivos: 06_base_territorial_grsac.jpg (2400 px), 06_base_territorial_grsac_web.jpg (1600 px)
+atribuição (linha exata):
+Contém dados Copernicus Sentinel modificados 2024, processados pela iAgroSat

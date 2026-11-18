@@ -1,0 +1,14 @@
+produto: Laudo PRODES
+local: Novo Progresso (PA), 100 % do quadro
+bounding box WGS84 (oeste, sul, leste, norte): -55.5405, -7.0088, -55.3595, -6.8912
+largura x altura aproximada: 20.0 km x 13.1 km
+data da cena: 24/07/2024
+sensor: Sentinel-2B (MSI, nível L2A)
+composição: cor verdadeira, B4 (vermelho) / B3 (verde) / B2 (azul), 10 m, contraste natural (gama 0.8, saturação 1.15); ampliada para 2400 px (Lanczos)
+offset de reflectância: decidido por cena pelo valor bruto de B02 e B11; subtraído = [0]
+fração de nuvem e sombra no quadro (SCL 3, 8, 9, 10): 0,00 %
+id da cena: S2B_21MXN_20240724_0_L2A
+o que se vê: Mosaico de floresta amazônica contínua e áreas abertas em blocos retangulares ao longo de uma rodovia, com um rio meandrante à esquerda.
+arquivos: 02_laudo_prodes.jpg (2400 px), 02_laudo_prodes_web.jpg (1600 px)
+atribuição (linha exata):
+Contém dados Copernicus Sentinel modificados 2024, processados pela iAgroSat
