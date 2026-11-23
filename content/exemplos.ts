@@ -1,7 +1,7 @@
 // ---------------------------------------------------------------------------
 // Biblioteca de exemplos de laudo: documento do cliente, exemplos (literal), com os arquivos do cliente em
 // public/exemplos/ (CONTEUDO-respostas.md › Exemplos; P13 encerrada, decisão 32). Produto pelo slug.
-// Todos levam o selo "Exemplo". O link abre o arquivo na mesma aba, sem seta.
+// Todos levam o selo "Exemplo". Links de PDF abrem em nova aba (_blank), sem seta.
 // ---------------------------------------------------------------------------
 
 import type { Valor } from "./valor";

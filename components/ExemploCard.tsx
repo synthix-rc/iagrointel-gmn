@@ -7,10 +7,11 @@ import Reveal from "@/components/motion/Reveal";
 /**
  * Card de laudo de exemplo (prefixo ex-, padroes.css).
  * Selo "Exemplo" sempre visível (quadradinho + texto, nunca só cor), produto, caso e detalhe (páginas, área).
- * Link para o arquivo (public/exemplos/) quando houver: mesma aba, sem seta (decisão 13). "Ver PDF" ou "Ver planilha".
+ * Link para o arquivo (public/exemplos/) quando houver: PDFs abrem em nova aba (_blank), sem seta. "Ver PDF" ou "Ver planilha".
  */
 export default function ExemploCard({ e }: { e: Exemplo }) {
-  const rotuloLink = e.arquivo?.endsWith(".pdf") ? rotulos.verPdf : rotulos.verPlanilha;
+  const isPdf = Boolean(e.arquivo?.endsWith(".pdf"));
+  const rotuloLink = isPdf ? rotulos.verPdf : rotulos.verPlanilha;
   return (
     <article className="ex">
       <div className="ex-top">
@@ -21,7 +22,16 @@ export default function ExemploCard({ e }: { e: Exemplo }) {
       {(e.detalhe || e.arquivo) && (
         <div className="ex-pe">
           {e.detalhe && <span className="ex-pag"><ValorTexto v={e.detalhe} /></span>}
-          {e.arquivo && <a className="lnk" href={e.arquivo} aria-label={`${rotuloLink}: ${e.caso.valor}`}>{rotuloLink}</a>}
+          {e.arquivo && (
+            <a
+              className="lnk"
+              href={e.arquivo}
+              aria-label={`${rotuloLink}: ${e.caso.valor}`}
+              {...(isPdf ? { target: "_blank", rel: "noopener" } : {})}
+            >
+              {rotuloLink}
+            </a>
+          )}
         </div>
       )}
     </article>
